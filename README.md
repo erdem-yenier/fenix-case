@@ -4,3 +4,5 @@ laravel sail ile porjeyi çalıştırdıktan sonra gerekli tabloların ve datala
 
 - sail artisan migrate
 - sail artisan db:seed
+
+Test edebilmek için proje içinde bulunna postman json çalıştırmak gerekmektedir.
