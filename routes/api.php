@@ -14,9 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group([
+
+    'namespace' => 'App\Http\Controllers\Dash',
+    'prefix' => 'dashboard'
+    
+], function ($router) {
+
+    Route::post('register', 'OwnerAuthController@register')->name('register');
+    Route::post('login', 'OwnerAuthController@login')->name('login');
+    Route::post('logout', 'OwnerAuthController@logout')->middleware('auth:sanctum')->name('logout');
+
+    Route::get('/list' , 'DashIndexController@list')->middleware('auth:sanctum')->name('order.list');
+    
 });
+
+
 
 Route::group([
 
@@ -31,5 +44,4 @@ Route::group([
     Route::post('/subscription' , 'SubscriptionController@subscription')->middleware('auth.login.check')->name('subscription');
     Route::post('/chat' , 'ChatController@index')->middleware('auth.login.check')->name('chat');
     
-
 });
